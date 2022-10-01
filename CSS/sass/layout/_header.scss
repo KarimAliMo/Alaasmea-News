@@ -1,0 +1,187 @@
+// variables
+$back-color: #000;
+$active-color: #f03232;
+// End Variables
+// Start Header
+.header {
+    background-color: $back-color;
+    @media (max-width: 1200px) {
+        background-color: transparent;
+    }
+    // Start nav bar
+    .nav-bar {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        position: relative;
+        z-index: 100;
+        & > a,
+        .economic {
+            padding: 15px;
+            color: #fff;
+        }
+        & > a {
+            transition: background-color 1s;
+            &:hover {
+                background-color: $active-color;
+            }
+        }
+        .economic {
+            position: relative;
+            transition: background-color 1s;
+            &:hover {
+                background-color: $active-color;
+                ul {
+                    display: flex;
+                }
+            }
+            & > a {
+                color: #fff;
+            }
+
+            ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                background-color: $back-color;
+                top: 48px;
+                right: 0;
+                z-index: 100;
+                li {
+                    padding: 15px 20px;
+                    width: 300px;
+                    text-align: end;
+                    border-top: 1px solid #333;
+                    &:hover {
+                        a {
+                            color: #fff;
+                        }
+                    }
+                    a {
+                        width: 300px;
+                        color: #777;
+                        position: relative;
+                        padding-right: 5px;
+                        &::before {
+                            content: "";
+                            position: absolute;
+                            width: 0;
+                            height: 0;
+                            border: 7px solid;
+                            border-top-color: transparent;
+                            border-right-color: $active-color;
+                            border-bottom-color: transparent;
+                            border-left-color: transparent;
+                            right: -13px;
+                            top: 5px;
+                        }
+                    }
+                }
+            }
+        }
+        .active {
+            background-color: $active-color;
+        }
+        @media (max-width: 1200px) {
+            display: none;
+            flex-direction: column;
+            width: 300px;
+            background-color: $back-color;
+            position: absolute;
+            top: 49px;
+            left: 0;
+            .economic {
+                ul {
+                    right: -300px;
+                }
+                @media (max-width: 768px) {
+                    order: 7;
+                    ul {
+                        bottom: -300px;
+                        left: 0;
+                        right: 0;
+                    }
+                }
+            }
+        }
+    }
+    // End nav bar
+
+    // Start bar button for the nav bar
+    .icon-bar {
+        position: absolute;
+        cursor: pointer;
+        @media (min-width: 1200px) {
+            display: none;
+        }
+        @media (max-width: 1200px) {
+            top: 17px;
+            color: #fff;
+            left: 25px;
+        }
+        @media (max-width: 768px) {
+            left: 215px;
+        }
+    }
+    // end bar button for nav bar
+}
+// End Header
+// Start latest News
+.latest {
+    margin: 50px 0;
+    background-color: #eee;
+    section {
+        padding: 40px 0 20px;
+        position: relative;
+        .heading {
+            background-color: $active-color;
+            width: fit-content;
+            padding: 10px 20px;
+            color: #fff;
+            text-transform: capitalize;
+            font-weight: bold;
+            letter-spacing: 1px;
+            word-spacing: 3px;
+            cursor: pointer;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+        .news {
+            display: flex;
+            align-items: center;
+            height: 40px;
+            position: relative;
+            overflow: hidden;
+            p {
+                position: absolute;
+                width: 155%;
+                font-weight: bold;
+                text-align: left;
+                animation: moving 25s infinite linear;
+                cursor: pointer;
+                @media (max-width: 1200px) {
+                    width: 190%;
+                }
+                @media (max-width: 992px) {
+                    width: 250%;
+                }
+                @media (max-width: 768px) {
+                    width: 400%;
+                }
+                @media (max-width: 470px) {
+                    width: 465%;
+                }
+            }
+        }
+    }
+}
+@keyframes moving {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(100%);
+    }
+}
+// End Latest News

@@ -1,0 +1,52 @@
+// Start Variables
+$back-color: #000;
+$text-color: #fff;
+// End Variables
+// Start Footer
+footer {
+    background-color: $back-color;
+    .container {
+        .content {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            color: $text-color;
+            align-items: center;
+            column-gap: 50px;
+            padding: 5px 0;
+            @media (max-width: 768px) {
+                justify-content: center;
+                row-gap: 10px;
+            }
+            .social {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                a {
+                    color: $text-color;
+                    padding: 15px 15px;
+                    &:nth-child(1):hover {
+                        background-color: #f00;
+                    }
+                    &:nth-child(2):hover {
+                        background-color: #00ffff;
+                    }
+                    &:nth-child(3):hover {
+                        background-color: #00f;
+                    }
+                }
+            }
+            .rights {
+                font-size: 14px;
+                text-align: center;
+            }
+            .craft {
+                text-align: center;
+                span {
+                    color: #ffc107;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}
+// End Footer

@@ -1,0 +1,665 @@
+// Start Variables
+$back-color: #333;
+$main-color: #fff;
+$side-color: #f03232;
+// End Varibales
+
+// Start mixins
+@mixin main-heading {
+    position: relative;
+    padding: 20px;
+    font-size: 30px;
+    text-align: end;
+    font-weight: normal;
+    word-spacing: 4px;
+    position: relative;
+    &:hover {
+        cursor: pointer;
+        color: $side-color;
+    }
+}
+@mixin main-heading-icon {
+    font-size: 20px;
+    color: $side-color;
+}
+@mixin main-heading-before {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 3px;
+    background-color: $side-color;
+    bottom: 0;
+    right: 20px;
+}
+@mixin main-cont {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(3, auto);
+    grid-template-areas:
+        "one one one one one one"
+        "two two two three three three"
+        "four four four five five five";
+}
+@mixin main-art {
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 20px;
+    border-top: 1px solid $back-color;
+}
+@mixin main-image {
+    position: relative;
+    width: 400px;
+    transition: transform 0.75s, background-color 0.75s linear;
+}
+@mixin main-image-before {
+    content: "Egypt News";
+    position: absolute;
+    bottom: 25px;
+    right: 10px;
+    background-color: #ff00005e;
+    border: 1px solid $side-color;
+    padding: 5px;
+    color: $main-color;
+}
+@mixin main-image-hover {
+    transform: scale(1.1);
+    &::before {
+        transform: scale(1);
+        background-color: $side-color;
+    }
+}
+@mixin inside-image {
+    max-width: 100%;
+    outline: 5px solid #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+@mixin paragraph {
+    cursor: pointer;
+    font-size: 14px;
+}
+@mixin button {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    cursor: pointer;
+    background-color: $side-color;
+    color: $main-color;
+    padding: 5px 10px;
+}
+// Mixins for media query
+@mixin main-cont-query {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "one one one one one one "
+        "two two two two two two"
+        "three three three three three three "
+        "four four four four four four "
+        " five five five five five five";
+}
+@mixin art-query {
+    flex-direction: column !important;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px !important;
+}
+@mixin image-query {
+    width: 300px !important;
+}
+@mixin p-query {
+    margin: 0 0 20px;
+    text-align: center;
+    line-height: 1.8;
+}
+@mixin button-query {
+    bottom: -30px !important;
+    left: 50% !important;
+    transform: translateX(-50%);
+}
+@mixin container-query {
+    @media (min-width: 1200px) {
+        display: flex;
+        justify-content: end;
+        .content {
+            width: 750px;
+            height: 610px;
+        }
+    }
+}
+@mixin content-query {
+    display: grid;
+    @media (max-width: 1200px) {
+        grid-template-columns: 1fr;
+    }
+}
+// End Mixin for media query
+// End mixins
+// Start Second Page
+.second-page {
+    margin: 50px 0;
+    .container {
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            justify-content: space-between;
+            gap: 20px;
+            @media (max-width: 1200px) {
+                grid-template-columns: 1fr;
+            }
+            // Start Opinion Articles
+            .opinion {
+                border: 1px solid #ddd;
+                height: fit-content;
+                padding: 0 0 20px 0;
+                h3 {
+                    position: relative;
+                    padding: 15px;
+                    text-align: end;
+                    background-color: $back-color;
+                    color: $main-color;
+                    word-spacing: 4px;
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        left: 0;
+                        height: 100%;
+                        top: 0;
+                        width: 20px;
+                        background-color: $side-color;
+                    }
+                }
+                .sub-article {
+                    display: flex;
+                    flex-direction: row-reverse;
+                    justify-content: space-around;
+                    align-items: center;
+                    padding: 10px 0;
+                    &:hover {
+                        cursor: pointer;
+                        color: $side-color;
+                    }
+                    div {
+                        width: 75px;
+                        height: 75px;
+                        img {
+                            max-width: 100%;
+                        }
+                    }
+                }
+                // media query for opinion article
+                @media (max-width: 1200px) {
+                    display: none;
+                }
+            }
+            // End Opinion Articles
+            // Start Main Articles
+            .articles {
+                background-color: #111;
+                h2 {
+                    color: $main-color;
+                    @include main-heading();
+                    i {
+                        @include main-heading-icon();
+                    }
+                    &::before {
+                        @include main-heading-before();
+                    }
+                }
+
+                // Start articles container
+                .art-cont {
+                    @include main-cont();
+                    .one {
+                        grid-area: one;
+                    }
+                    .two {
+                        grid-area: two;
+                    }
+                    .three {
+                        grid-area: three;
+                    }
+                    .four {
+                        grid-area: four;
+                    }
+                    .five {
+                        grid-area: five;
+                    }
+
+                    // media query small screen for main articles
+                    @media (max-width: 768px) {
+                        @include main-cont-query();
+                        .art {
+                            @include art-query();
+                            .art-image {
+                                @include image-query();
+                            }
+                            .write {
+                                p {
+                                    @include p-query();
+                                }
+                                button {
+                                    @include button-query();
+                                }
+                            }
+                        }
+                    }
+                    // End media query for main article
+
+                    .art {
+                        @include main-art();
+                        &:hover {
+                            box-shadow: 0 0 10px 2px #333;
+                        }
+                        &:not(:first-child) {
+                            .art-image {
+                                &::before {
+                                    font-size: 12px;
+                                }
+                            }
+                            .write {
+                                button {
+                                    font-size: 12px;
+                                    i {
+                                        font-size: 12px;
+                                    }
+                                }
+                            }
+                        }
+
+                        // Start images container
+                        .art-image {
+                            @include main-image();
+                            &::before {
+                                @include main-image-before();
+                            }
+                            &:hover {
+                                @include main-image-hover();
+                            }
+                            img {
+                                @include inside-image();
+                            }
+                        }
+                        // End images container
+
+                        // Start paragraphes container
+                        .write {
+                            position: relative;
+                            p {
+                                color: $main-color;
+                                @include paragraph();
+                            }
+                            button {
+                                color: $main-color;
+                                @include button();
+                            }
+                        }
+                        // End paragraphes container
+                    }
+                }
+                // End articles container
+            }
+            // End Main Articles
+        }
+    }
+}
+// End Second Page
+
+// Start Third Page
+.third-page {
+    .container {
+        @include container-query();
+        .content {
+            @include content-query();
+            .economie {
+                border: 1px solid #eee;
+                h2 {
+                    @include main-heading();
+                    i {
+                        @include main-heading-icon();
+                    }
+                    &::before {
+                        @include main-heading-before();
+                    }
+                }
+                // Start Articles container
+                .eco-cont {
+                    @include main-cont();
+                    .one {
+                        grid-area: one;
+                    }
+                    .two {
+                        grid-area: two;
+                    }
+                    .three {
+                        grid-area: three;
+                    }
+                    .four {
+                        grid-area: four;
+                    }
+                    .five {
+                        grid-area: five;
+                    }
+                    // media query for small screen main articles
+                    @media (max-width: 768px) {
+                        @include main-cont-query();
+                        .eco {
+                            @include art-query();
+                            .eco-image {
+                                @include image-query();
+                            }
+                            .text {
+                                p {
+                                    @include p-query();
+                                }
+                                button {
+                                    @include button-query();
+                                }
+                            }
+                        }
+                    }
+                    // end media query small screen main articles
+                }
+                // End Articles container
+
+                .eco {
+                    @include main-art();
+                    &:hover {
+                        box-shadow: 0 0 10px 2px #ddd;
+                    }
+                    border-color: #ddd;
+                    &:not(:first-child) {
+                        .eco-image {
+                            &::before {
+                                font-size: 12px;
+                            }
+                        }
+                        .text {
+                            button {
+                                font-size: 12px;
+                                i {
+                                    font-size: 12px;
+                                }
+                            }
+                        }
+                    }
+
+                    // Start Images container
+                    .eco-image {
+                        @include main-image();
+                        &::before {
+                            @include main-image-before;
+                            content: "economie";
+                        }
+                        &:hover {
+                            @include main-image-hover();
+                        }
+                        img {
+                            @include inside-image();
+                        }
+                    }
+                    // End Images container
+
+                    // Start paragraph container
+                    .text {
+                        position: relative;
+                        p {
+                            @include paragraph();
+                            &:hover {
+                                color: $side-color;
+                            }
+                        }
+                        button {
+                            @include button();
+                            border: none;
+                        }
+                    }
+                    // End paragraph container
+                }
+            }
+        }
+    }
+}
+// End Third Page
+
+// Start fourth page
+.fourth-page {
+    margin: 50px 0;
+    .container {
+        @include container-query();
+        .content {
+            @include content-query();
+            .sports {
+                background-color: #111;
+                h2 {
+                    color: $main-color;
+                    @include main-heading();
+                    i {
+                        @include main-heading-icon();
+                    }
+                    &::before {
+                        @include main-heading-before();
+                    }
+                }
+                // Start Articles contanier
+                .sports-cont {
+                    @include main-cont();
+                    .one {
+                        grid-area: one;
+                    }
+                    .two {
+                        grid-area: two;
+                    }
+                    .three {
+                        grid-area: three;
+                    }
+                    .four {
+                        grid-area: four;
+                    }
+                    .five {
+                        grid-area: five;
+                    }
+                    // Start media query for small screen main articles
+                    @media (max-width: 768px) {
+                        @include main-cont-query();
+                        .sport {
+                            @include art-query();
+                            .sport-image {
+                                @include image-query();
+                            }
+                            .text {
+                                p {
+                                    @include p-query();
+                                }
+                                button {
+                                    @include button-query();
+                                }
+                            }
+                        }
+                    }
+                    // End media query for small screen main articles
+
+                    .sport {
+                        @include main-art();
+                        &:hover {
+                            box-shadow: 0 0 10px 2px #333;
+                        }
+                        &:not(:first-child) {
+                            .sport-image {
+                                &::before {
+                                    font-size: 12px;
+                                }
+                            }
+                            .text {
+                                button {
+                                    font-size: 12px;
+                                    i {
+                                        font-size: 12px;
+                                    }
+                                }
+                            }
+                        }
+                        // Start Images container
+                        .sport-image {
+                            @include main-image();
+                            &::before {
+                                @include main-image-before;
+                                content: "sports";
+                            }
+                            &:hover {
+                                @include main-image-hover();
+                            }
+                            img {
+                                @include inside-image();
+                            }
+                        }
+                        // End Images container
+
+                        // Start paragraph container
+                        .text {
+                            position: relative;
+                            p {
+                                color: $main-color;
+                                @include paragraph();
+                                &:hover {
+                                    color: $side-color;
+                                }
+                            }
+                            button {
+                                color: $main-color;
+                                @include button();
+                            }
+                        }
+                        // End paragraph container
+                    }
+                }
+                // End Articles container
+            }
+        }
+    }
+}
+// End fourth page
+
+// Start fifth page
+.fifth-page {
+    margin-bottom: 50px;
+    .container {
+        @include container-query();
+        .content {
+            @include content-query();
+            .culture {
+                border: 1px solid #eee;
+                h2 {
+                    filter: grayscale(100%);
+                    &:hover {
+                        filter: none;
+                    }
+                    @include main-heading();
+                    i {
+                        @include main-heading-icon();
+                    }
+                    &::before {
+                        @include main-heading-before();
+                    }
+                }
+                // Start Articles container
+                .cul-cont {
+                    @include main-cont();
+                    .one {
+                        grid-area: one;
+                    }
+                    .two {
+                        grid-area: two;
+                    }
+                    .three {
+                        grid-area: three;
+                    }
+                    .four {
+                        grid-area: four;
+                    }
+                    .five {
+                        grid-area: five;
+                    }
+                    // media query for small screen main articles
+                    @media (max-width: 768px) {
+                        @include main-cont-query();
+                        .cult-art {
+                            @include art-query();
+                            .culture-image {
+                                @include image-query();
+                            }
+                            .text {
+                                p {
+                                    @include p-query();
+                                }
+                                button {
+                                    @include button-query();
+                                }
+                            }
+                        }
+                    }
+                    // end media query small screen main articles
+                }
+                // End Articles container
+                .cult-art {
+                    filter: grayscale(100%);
+                    @include main-art();
+                    &:hover {
+                        box-shadow: 0 0 10px 2px #ddd;
+                        filter: none;
+                    }
+                    border-color: #ddd;
+                    &:not(:first-child) {
+                        .culture-image {
+                            &::before {
+                                font-size: 12px;
+                            }
+                        }
+                        .text {
+                            button {
+                                font-size: 12px;
+                                i {
+                                    font-size: 12px;
+                                }
+                            }
+                        }
+                    }
+
+                    // Start Images container
+                    .culture-image {
+                        @include main-image();
+                        &::before {
+                            @include main-image-before;
+                            content: "Art";
+                        }
+                        &:hover {
+                            @include main-image-hover();
+                        }
+                        img {
+                            @include inside-image();
+                        }
+                    }
+                    // End Images container
+
+                    // Start paragraph container
+                    .text {
+                        position: relative;
+                        p {
+                            @include paragraph();
+                            &:hover {
+                                color: $side-color;
+                            }
+                        }
+                        button {
+                            @include button();
+                            border: none;
+                        }
+                    }
+                    // End paragraph container
+                }
+            }
+        }
+    }
+}
+// End fifth page

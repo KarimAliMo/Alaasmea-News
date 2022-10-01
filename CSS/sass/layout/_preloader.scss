@@ -1,0 +1,52 @@
+// Start Preloader
+#preloader {
+    background: linear-gradient(20deg, #cf112d, #fe803b);
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+}
+.loader {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 1001;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.load-1,
+.load-2,
+.load-3 {
+    border-radius: 50%;
+    background-color: #fff;
+}
+.load-1 {
+    animation: move 1s infinite alternate;
+    margin-bottom: 100px;
+}
+.load-2 {
+    animation: move 1.5s 1.5s infinite alternate;
+    margin-top: 50px;
+}
+.load-3 {
+    animation: move 2s 3s infinite alternate;
+    margin-bottom: 100px;
+}
+@keyframes move {
+    from {
+        width: 0;
+        height: 0;
+    }
+    to {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+// End Preloader

@@ -1,0 +1,222 @@
+// Start variables
+$main-width: 800px;
+$main-height: 500px;
+$button-color: #40d3dc;
+// End variables
+// Start Images Slider
+.first-page {
+    .content {
+        .slider-container {
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            .slider {
+                width: $main-width;
+                height: $main-height;
+                border-radius: 10px;
+                overflow: hidden;
+                .slides {
+                    width: 500%;
+                    height: $main-height;
+                    display: flex;
+                    input {
+                        display: none;
+                    }
+                    .slide {
+                        width: 20%;
+                        transition: 2s;
+                        img {
+                            width: $main-width;
+                            height: $main-height;
+                        }
+                    }
+                    #radio1:checked ~ .first {
+                        margin-left: 0;
+                    }
+                    #radio2:checked ~ .first {
+                        margin-left: -20%;
+                    }
+                    #radio3:checked ~ .first {
+                        margin-left: -40%;
+                    }
+                    #radio4:checked ~ .first {
+                        margin-left: -60%;
+                    }
+                    .navigation-auto {
+                        position: absolute;
+                        width: $main-width;
+                        margin-top: 460px;
+                        display: flex;
+                        justify-content: center;
+                        div {
+                            padding: 5px;
+                            border-radius: 10px;
+                            border: 2px solid $button-color;
+                            transition: 1s;
+                            &:not(:last-child) {
+                                margin-right: 40px;
+                            }
+                        }
+                    }
+                    #radio1:checked ~ .navigation-auto .auto-btn1 {
+                        background-color: $button-color;
+                    }
+                    #radio2:checked ~ .navigation-auto .auto-btn2 {
+                        background-color: $button-color;
+                    }
+                    #radio3:checked ~ .navigation-auto .auto-btn3 {
+                        background-color: $button-color;
+                    }
+                    #radio4:checked ~ .navigation-auto .auto-btn4 {
+                        background-color: $button-color;
+                    }
+                }
+                .navigation-manual {
+                    position: absolute;
+                    width: $main-width;
+                    margin-top: -40px;
+                    display: flex;
+                    justify-content: center;
+                    .manual-btn {
+                        border: 2px solid $button-color;
+                        padding: 5px;
+                        border-radius: 10px;
+                        cursor: pointer;
+                        transition: 1s;
+                        &:not(:last-child) {
+                            margin-right: 40px;
+                        }
+                        &:hover {
+                            background-color: $button-color;
+                        }
+                    }
+                }
+            }
+            // Slider at Medium Screen
+            @media (max-width: 992px) {
+                justify-content: center;
+                .slider {
+                    width: 600px;
+                    height: 400px;
+                    .slides {
+                        width: 500%;
+                        height: 400px;
+                        .slide {
+                            width: 20%;
+                            img {
+                                width: 600px;
+                                height: 400px;
+                            }
+                        }
+                        .navigation-auto {
+                            position: absolute;
+                            width: 600px;
+                            margin-top: 360px;
+                            div {
+                                &:not(:last-child) {
+                                    margin-right: 30px;
+                                }
+                            }
+                        }
+                    }
+                    .navigation-manual {
+                        width: 600px;
+                        .manual-btn {
+                            &:not(:last-child) {
+                                margin-right: 30px;
+                            }
+                        }
+                    }
+                }
+            }
+            // end Slider at Medium Screen
+            // Slider at Small Screen
+            @media (max-width: 768px) {
+                justify-content: center;
+                .slider {
+                    width: 400px;
+                    height: 300px;
+                    .slides {
+                        width: 500%;
+                        height: 300px;
+                        .slide {
+                            width: 20%;
+                            img {
+                                width: 400px;
+                                height: 300px;
+                            }
+                        }
+                        .navigation-auto {
+                            position: absolute;
+                            width: 400px;
+                            margin-top: 260px;
+                            div {
+                                &:not(:last-child) {
+                                    margin-right: 20px;
+                                }
+                            }
+                        }
+                    }
+                    .navigation-manual {
+                        width: 400px;
+                        .manual-btn {
+                            &:not(:last-child) {
+                                margin-right: 20px;
+                            }
+                        }
+                    }
+                }
+            }
+            // end Slider at Small Screen
+        }
+    }
+}
+// End Images Slider
+// Start Coins Table
+.first-page {
+    .content {
+        .coins {
+            position: absolute;
+            transform: translateY(-500px);
+            p {
+                width: 100%;
+                text-align: center;
+                font-size: 25px;
+                font-weight: bold;
+                background-color: #000;
+                color: #fff;
+                padding: 10px 50px;
+                position: relative;
+                &::before {
+                    content: "";
+                    position: absolute;
+                    height: 100%;
+                    width: 12px;
+                    background-color: #f00;
+                    top: 0;
+                    left: 0;
+                }
+            }
+            table {
+                padding: 10px 20px;
+                font-size: 20px;
+                border: 1px solid #ddd;
+                tr {
+                    td {
+                        border-top: 1px solid #ddd;
+                    }
+                    & :first-child {
+                        padding: 20px;
+                    }
+                    & :last-child {
+                        text-align: center;
+                    }
+                }
+            }
+            @media (max-width: 1200px) {
+                display: none;
+            }
+        }
+    }
+}
+// End Coins Table

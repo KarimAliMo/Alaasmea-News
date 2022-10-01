@@ -1,0 +1,187 @@
+// Variables
+$back-color: #000;
+$main-color: #fff;
+// Mixins
+@mixin holder {
+    display: none;
+    position: absolute;
+    color: $main-color;
+    background-color: #494949;
+    top: 50px;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 6px;
+    transform: translateX(-20px);
+}
+.about {
+    background-color: $back-color;
+    .container {
+        display: flex;
+        justify-content: space-between;
+        .contact {
+            color: $main-color;
+            a {
+                color: $main-color;
+            }
+            > div,
+            i,
+            a {
+                padding-left: 5px;
+                position: relative;
+            }
+            > div:hover {
+                .ad-holder {
+                    display: block;
+                }
+            }
+            .phone {
+                position: relative;
+                &:hover {
+                    .ph-holder {
+                        display: block;
+                    }
+                }
+            }
+            .email {
+                position: relative;
+                &:hover {
+                    .e-holder {
+                        display: block;
+                    }
+                }
+            }
+            @media (max-width: 992px) {
+                display: none !important;
+            }
+        }
+        .search {
+            color: $main-color;
+            > div {
+                cursor: pointer;
+                position: relative;
+            }
+            > div:hover {
+                .s-holder {
+                    display: block;
+                    top: 50px;
+                }
+            }
+            #bar {
+                position: absolute;
+                transform: translateY(-200px);
+                padding-right: 15px;
+                padding-left: 15px;
+                margin: auto !important;
+                height: 150px;
+                display: none;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                background-color: #212126;
+                @media (min-width: 768px) {
+                    width: 720px;
+                }
+                @media (min-width: 992px) {
+                    width: 940px;
+                }
+                @media (min-width: 1200px) {
+                    width: 1140px;
+                }
+                @media (max-width: 768px) {
+                    width: 100%;
+                    left: -1px;
+                }
+                input {
+                    width: 70%;
+                    height: 30%;
+                    border: 1px solid $main-color;
+                    &:focus {
+                        outline: none;
+                        box-shadow: 0px 0px 7px 2px #00bcd4;
+                    }
+                }
+                button {
+                    margin-top: 10px;
+                    background-color: #f03232;
+                    color: $main-color;
+                    padding: 10px 20px;
+                    cursor: pointer;
+                    font-weight: bold;
+                    letter-spacing: 1px;
+                }
+            }
+        }
+        .info,
+        .contact,
+        .social-media,
+        .date {
+            display: flex;
+        }
+        .search,
+        .contact {
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+        .social-media {
+            align-items: center;
+            a {
+                color: $main-color;
+                padding: 15px 15px;
+                &:nth-child(1):hover {
+                    background-color: #f00;
+                    .yo-holder {
+                        display: block;
+                        top: 65px;
+                    }
+                }
+                &:nth-child(2):hover {
+                    background-color: #00ffff;
+                    .tw-holder {
+                        display: block;
+                        top: 65px;
+                    }
+                }
+                &:nth-child(3):hover {
+                    background-color: #00f;
+                    .f-holder {
+                        display: block;
+                        top: 65px;
+                    }
+                }
+            }
+            @media (max-width: 768px) {
+                display: none;
+            }
+        }
+        .date {
+            color: $main-color;
+            background-color: rgb(238, 68, 68);
+            align-items: center;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        .s-holder,
+        .ad-holder,
+        .ph-holder,
+        .e-holder,
+        .yo-holder,
+        .tw-holder,
+        .f-holder {
+            @include holder();
+            &::before {
+                position: absolute;
+                content: "";
+                border: 10px solid;
+                border-top-color: transparent;
+                border-right-color: transparent;
+                border-left-color: transparent;
+                border-bottom-color: #494949;
+                top: -20px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 0;
+                height: 0;
+            }
+        }
+    }
+}
